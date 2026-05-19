@@ -1,5 +1,7 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ArrayProblems {
 
@@ -214,8 +216,67 @@ public class ArrayProblems {
         return arr;
     }
 
+    //shift array by k position //2,5,6,7,8,9 =
+    //solution:!
+    public static int[] shiftByK(int[] arr, int k){
+        int size = arr.length;
+        int[] temp = new int[size];
+        int init = 0;
+        int arc = 0;
+        for (int i = size-k; i < size; i++) {
+            temp[init++] = arr[i];
+        }
+        for (int i = init; i < init + size-k ; i++) {
+           temp[i] = arr[arc++];
+        }
+        return temp;
+    }
+    //solution:2
+    public static int[] shiftByElement(int[] arr, int k){
+        int size = arr.length;
+        int[] temp = new int[k];
+        if(size < k){
+            k = k % size;
+        }
+        int init = size - k - 1;
+        int tempCount = 0;
+        for (int i = size - 1; i >= 0; i--) {
+            if (i <= init) {
+                arr[i + k] = arr[i];
+            } else {
+                temp[tempCount++] = arr[i];
+            }
+        }
+        for (int i = 0; i < tempCount; i++){
+            arr[i] = temp[--k];
+        }
+        return arr;
+    }
+
+    //UNION of array element
+    static int[] getUnion(int[] arr1, int[] arr2){
+        Set<Integer> set = new HashSet<>();
+
+        for(int a : arr1){
+            set.add(a);
+        }
+        for(int b : arr2){
+            set.add(b);
+        }
+        int[] result = new int[set.size()];
+
+        int index = 0;
+        for (int num : set) {
+            result[index++] = num;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1,0,1,1,0,0,1};
-        getPrinter(getSortedZeroOne(arr));
+        int[] arr = {1,2,3,4,5,6};
+        //getPrinter(getSortedZeroOne(arr));
+        //shiftByK(arr , 2);
+        //getPrinter(shiftByElement(arr , 7));
     }
 }

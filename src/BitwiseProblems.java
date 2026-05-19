@@ -36,8 +36,19 @@ public class BitwiseProblems {
         }
     }
 
+    //swap two numbers using XOR
+    public static void swap(int a, int b){
+        a = a^b;
+        b = a^b;
+        a = a^b;
+        System.out.println(a + " a is Swapped");
+        System.out.println(b + " b is Swapped");
+    }
+
+
     public static void main(String[] args) {
         //checkEven(6);
-        idPowerTwo(8);
+        //idPowerTwo(8);
+        //swap(4,5);
     }
 }
